@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
 import { connection } from "next/server";
+import { HeroSlideshow } from "@/components/hero-slideshow";
 import { SearchForm } from "@/components/search-form";
 import { addDays, todayIso } from "@/lib/format";
 import type { SearchQuery } from "@/lib/types";
@@ -20,16 +21,9 @@ export default function HomePage() {
     <>
       <section className="relative">
         <div className="relative min-h-[52vh] md:min-h-[78vh]">
-          <Image
-            src="/photos/hero-harbour.jpg"
-            alt="Fishing boats in a sunlit harbour below hillside houses."
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-ink/10" />
-          <div className="relative mx-auto flex min-h-[52vh] max-w-6xl flex-col justify-end px-4 pb-8 md:min-h-[78vh] md:pb-28">
+          <HeroSlideshow />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-ink/10" />
+          <div className="pointer-events-none relative mx-auto flex min-h-[52vh] max-w-6xl flex-col justify-end px-4 pb-8 md:min-h-[78vh] md:pb-28">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-sand">International flights</p>
             <h1 className="mt-2 max-w-xl font-serif text-5xl leading-none tracking-tight text-white sm:text-6xl">
               Compare the fare before you pack.
