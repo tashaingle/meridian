@@ -4,7 +4,7 @@ export function DemoBanner() {
   if (process.env.NEXT_PUBLIC_LIVE_BOOKING === "true") return null;
   return (
     <p className="bg-sea-deep px-4 py-2 text-center text-sm text-sand">
-      Demonstration. Sample fares, no payment taken, and no ticket issued.
+      Demonstration for Umrah flight search. Sample fares, no payment taken, and no ticket issued.
     </p>
   );
 }
@@ -29,7 +29,7 @@ export function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-5 text-sm text-muted">
           <Link href="/" className="hover:text-ink">
-            Flights
+            Fares
           </Link>
           <Link href="/bookings" className="hover:text-ink">
             Manage booking
@@ -50,7 +50,7 @@ export function SiteFooter() {
         <div>
           <p className="font-serif text-2xl text-white">Meridian</p>
           <p className="mt-2 max-w-xs text-sm leading-6 text-sand/80">
-            A flights-only start for an international booking site. Hotels come later. The trading name is still to be confirmed.
+            Umrah flight search for travel agents in the UK, the US and Canada. Hotels and visas come later. The trading name is still to be confirmed.
           </p>
         </div>
         <div className="text-sm leading-7">
@@ -79,7 +79,7 @@ export function SiteFooter() {
         </div>
       </div>
       <p className="border-t border-white/10 px-4 py-4 text-center text-xs text-sand/70">
-        Not a live travel agency. No ATOL, payment or airline contract is in place on this demonstration.
+        Not a live travel agency. No consumer-protection registration, payment or airline contract is in place on this demonstration.
       </p>
     </footer>
   );

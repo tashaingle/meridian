@@ -17,10 +17,11 @@ const live = process.env.NEXT_PUBLIC_LIVE_BOOKING === "true";
 
 export const metadata: Metadata = {
   title: {
-    default: "Meridian · International flights",
+    default: "Meridian · Umrah flights",
     template: "%s · Meridian",
   },
-  description: "Search, compare and book international flights. This deployment is a demonstration until airline and payment accounts are connected.",
+  description:
+    "Compare Umrah flights into Jeddah and Medina for travel agents in the UK, the United States and Canada. This deployment is a demonstration until airline and payment accounts are connected.",
   robots: live ? undefined : { index: false, follow: false },
 };
 

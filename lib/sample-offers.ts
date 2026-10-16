@@ -1,4 +1,4 @@
-import { distanceKm } from "@/lib/airports";
+import { distanceKm, getAirport } from "@/lib/airports";
 import { parseSearchQuery } from "@/lib/query";
 import type {
   Cabin,
@@ -22,7 +22,7 @@ const AIRLINES = [
   { code: "KF", name: "Kinfield" },
 ];
 
-const HUBS = ["AMS", "CDG", "FRA", "IST", "DOH", "DXB", "LHR", "JFK", "SIN", "AUH"];
+const HUBS = ["AMS", "CDG", "FRA", "IST", "CAI", "DOH", "DXB", "LHR", "JFK", "AUH"];
 
 const SLOTS = [6 * 60 + 35, 9 * 60 + 10, 12 * 60 + 45, 15 * 60 + 20, 18 * 60 + 5, 21 * 60 + 15];
 
@@ -208,6 +208,13 @@ function priceFare(query: SearchQuery, slices: Slice[], brand: FareBrand): { bas
   return { base, tax, total: base + tax };
 }
 
+function quoteCurrency(origin: string): { currency: string; symbol: string; rate: number } {
+  const country = getAirport(origin)?.country;
+  if (country === "United States") return { currency: "USD", symbol: "$", rate: 1.27 };
+  if (country === "Canada") return { currency: "CAD", symbol: "CA$", rate: 1.72 };
+  return { currency: "GBP", symbol: "£", rate: 1 };
+}
+
 function fareCopy(brand: FareBrand, currencyPenalty = "£"): {
   brandName: string;
   cabinBag: string;
@@ -274,17 +281,19 @@ function buildItinerary(query: SearchQuery, variant: number): Itinerary | null {
     );
   }
 
+  const quote = quoteCurrency(query.origin);
   const fares: FareOption[] = BRANDS.map((brand) => {
     const money = priceFare(query, slices, brand);
-    const copy = fareCopy(brand);
+    const copy = fareCopy(brand, quote.symbol);
+    const scale = (minor: number) => Math.round(minor * quote.rate);
     return {
       id: encodeKey({ q: query, v: variant, b: brand }),
       brand,
       ...copy,
-      totalMinor: money.total,
-      baseMinor: money.base,
-      taxMinor: money.tax,
-      currency: "GBP",
+      totalMinor: scale(money.total),
+      baseMinor: scale(money.base),
+      taxMinor: scale(money.tax),
+      currency: quote.currency,
     };
   });
 

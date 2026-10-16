@@ -1,8 +1,8 @@
 # Meridian
 
-A flights-only start of the international booking site in the October 2026 project plan.
+An Umrah flight search for travel agents in the UK, the US and Canada, started from the October 2026 project plan.
 
-Travellers can search, compare fares, read the conditions, enter passenger details and save a demonstration booking. Staff can sign in and see bookings the server managed to store. Terms, privacy, cookies and refunds are draft pages for the selling business to replace.
+Agents can search Jeddah and Medina, compare fares, read the conditions, enter passenger details and save a demonstration booking. Staff can sign in and see bookings the server managed to store. Terms, privacy, cookies and refunds are draft pages for the selling business to replace. Hotels and visas are not in this version.
 
 ## What is live
 
@@ -15,7 +15,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000. Try London to Lisbon, then use **Fill sample traveller** at checkout. The demonstration card is `4242 4242 4242 4242`.
+Open http://localhost:3000. Try London to Jeddah, then use **Fill sample traveller** at checkout. The demonstration card is `4242 4242 4242 4242`.
 
 ## Deploy on Vercel
 

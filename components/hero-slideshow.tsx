@@ -5,36 +5,35 @@ import { useEffect, useState } from "react";
 
 const SLIDES = [
   {
-    src: "/photos/hero-coast.jpg",
-    alt: "A rocky coast and pale mountains across the water at sunset.",
+    src: "/photos/hero-wing.jpg",
+    alt: "A desert coast and blue water, seen from an airplane window at sunrise.",
   },
   {
-    src: "/photos/hero-village.jpg",
-    alt: "A whitewashed lane opening onto a deep blue bay.",
+    src: "/photos/hero-concourse.jpg",
+    alt: "Travellers with suitcases walking through a bright airport concourse.",
   },
   {
-    src: "/photos/hero-villas.jpg",
-    alt: "A timber walkway leading to overwater villas.",
+    src: "/photos/hero-apron.jpg",
+    alt: "An unmarked white jet on a desert runway in low morning light.",
   },
   {
-    src: "/photos/hero-beach.jpg",
-    alt: "A pale beach curving into turquoise water, with a small boat near the shore.",
+    src: "/photos/hero-corniche.jpg",
+    alt: "A waterfront of lit apartment buildings beside calm water at dusk.",
   },
 ];
 
 export function HeroSlideshow() {
   const [index, setIndex] = useState(0);
-  const [stopped, setStopped] = useState(false);
   const [held, setHeld] = useState(false);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (stopped || held || media.matches) return;
+    if (held || media.matches) return;
     const id = window.setInterval(() => {
       setIndex((current) => (current + 1) % SLIDES.length);
     }, 7000);
     return () => window.clearInterval(id);
-  }, [held, stopped]);
+  }, [held]);
 
   return (
     <div
@@ -61,26 +60,17 @@ export function HeroSlideshow() {
           }`}
         />
       ))}
-      <div className="absolute right-4 top-4 z-10 flex items-center gap-2">
-        <button
-          type="button"
-          className="rounded-full bg-ink/55 px-3 py-1.5 text-xs font-medium text-white backdrop-blur hover:bg-ink/75"
-          onClick={() => setStopped((current) => !current)}
-        >
-          {stopped ? "Play" : "Pause"}
-        </button>
-        <div className="flex gap-1.5 rounded-full bg-ink/55 p-1.5 backdrop-blur">
-          {SLIDES.map((slide, slideIndex) => (
-            <button
-              key={slide.src}
-              type="button"
-              aria-label={`Show photograph ${slideIndex + 1} of ${SLIDES.length}`}
-              aria-current={slideIndex === index}
-              onClick={() => setIndex(slideIndex)}
-              className={`h-2.5 w-2.5 rounded-full ${slideIndex === index ? "bg-white" : "bg-white/45"}`}
-            />
-          ))}
-        </div>
+      <div className="absolute right-4 top-4 z-10 flex gap-1.5 rounded-full bg-ink/55 p-1.5 backdrop-blur">
+        {SLIDES.map((slide, slideIndex) => (
+          <button
+            key={slide.src}
+            type="button"
+            aria-label={`Show photograph ${slideIndex + 1} of ${SLIDES.length}`}
+            aria-current={slideIndex === index}
+            onClick={() => setIndex(slideIndex)}
+            className={`h-2.5 w-2.5 rounded-full ${slideIndex === index ? "bg-white" : "bg-white/45"}`}
+          />
+        ))}
       </div>
     </div>
   );

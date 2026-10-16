@@ -79,11 +79,23 @@ export const AIRPORTS: Airport[] = [
   { iata: "NBO", city: "Nairobi", name: "Jomo Kenyatta", country: "Kenya", lat: -1.3192, lon: 36.9278 },
   { iata: "DEL", city: "Delhi", name: "Indira Gandhi", country: "India", lat: 28.5562, lon: 77.1 },
   { iata: "BOM", city: "Mumbai", name: "Mumbai", country: "India", lat: 19.0896, lon: 72.8656 },
+  { iata: "LBA", city: "Leeds", name: "Leeds Bradford", country: "United Kingdom", lat: 53.8659, lon: -1.6606 },
+  { iata: "NCL", city: "Newcastle", name: "Newcastle", country: "United Kingdom", lat: 55.0375, lon: -1.6917 },
+  { iata: "IAD", city: "Washington", name: "Dulles", country: "United States", lat: 38.9531, lon: -77.4565 },
+  { iata: "IAH", city: "Houston", name: "George Bush", country: "United States", lat: 29.9902, lon: -95.3368 },
+  { iata: "DFW", city: "Dallas", name: "Dallas Fort Worth", country: "United States", lat: 32.8998, lon: -97.0403 },
+  { iata: "ATL", city: "Atlanta", name: "Hartsfield-Jackson", country: "United States", lat: 33.6407, lon: -84.4277 },
+  { iata: "DTW", city: "Detroit", name: "Detroit", country: "United States", lat: 42.2162, lon: -83.3554 },
+  { iata: "YUL", city: "Montreal", name: "Trudeau", country: "Canada", lat: 45.4706, lon: -73.7408 },
+  { iata: "YOW", city: "Ottawa", name: "Ottawa", country: "Canada", lat: 45.3225, lon: -75.6692 },
+  { iata: "YYC", city: "Calgary", name: "Calgary", country: "Canada", lat: 51.1215, lon: -114.0076 },
+  { iata: "JED", city: "Jeddah", name: "King Abdulaziz", country: "Saudi Arabia", lat: 21.6796, lon: 39.1565 },
+  { iata: "MED", city: "Medina", name: "Prince Mohammad bin Abdulaziz", country: "Saudi Arabia", lat: 24.5534, lon: 39.7051 },
 ];
 
 const BY_IATA = new Map(AIRPORTS.map((airport) => [airport.iata, airport]));
 
-const POPULAR = ["LHR", "LIS", "FCO", "JFK", "DXB", "CDG", "KEF", "HND"]
+const POPULAR = ["LHR", "MAN", "JFK", "ORD", "YYZ", "YUL", "JED", "MED"]
   .map((code) => BY_IATA.get(code))
   .filter((airport): airport is Airport => Boolean(airport));
 
