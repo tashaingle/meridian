@@ -11,7 +11,7 @@
   --color-copper: #9a4318;
   --color-sand: #efe2cf;
   --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
 }
 
 html {

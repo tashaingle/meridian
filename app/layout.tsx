@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Outfit, Source_Serif_4 } from "next/font/google";
 import { DemoBanner, SiteFooter, SiteHeader } from "@/components/shell";
 import "./globals.css";
 
@@ -8,9 +8,9 @@ const outfit = Outfit({
   variable: "--font-outfit",
 });
 
-const fraunces = Fraunces({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-source-serif",
 });
 
 const live = process.env.NEXT_PUBLIC_LIVE_BOOKING === "true";
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-GB" className={`${outfit.variable} ${fraunces.variable} h-full antialiased`}>
+    <html lang="en-GB" className={`${outfit.variable} ${sourceSerif.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <DemoBanner />
         <SiteHeader />
