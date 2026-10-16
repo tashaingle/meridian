@@ -89,19 +89,20 @@ export function SearchForm({
           </button>
         ))}
       </div>
-      <div className="grid gap-3 md:grid-cols-2">
-        <AirportField label="From" value={origin} placeholder="City or airport" onChange={setOrigin} />
-        <div className="relative">
+      <div className="grid gap-3">
+        <div className="grid items-end gap-3 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+          <AirportField label="From" value={origin} placeholder="City or airport" onChange={setOrigin} />
           <button
             type="button"
             onClick={swap}
             aria-label="Swap airports"
-            className="absolute -top-1 right-0 z-10 grid h-8 w-8 place-items-center rounded-full border border-line bg-white text-sea md:top-7 md:-left-4"
+            className="mx-auto mb-1.5 grid h-9 w-9 place-items-center rounded-full border border-line bg-white text-sea"
           >
-            ⇄
+            <span aria-hidden="true">⇄</span>
           </button>
           <AirportField label="To" value={destination} placeholder="City or airport" onChange={setDestination} />
         </div>
+        <div className="grid gap-3 md:grid-cols-2">
         <label className="block">
           <span className="mb-1 block text-xs font-semibold uppercase tracking-[0.14em] text-muted">Depart</span>
           <input
@@ -171,6 +172,7 @@ export function SearchForm({
             ))}
           </select>
         </label>
+        </div>
       </div>
       {error && <p className="mt-3 text-sm text-copper">{error}</p>}
       <button type="submit" className="mt-4 h-12 w-full rounded-full bg-sea text-base font-semibold text-white hover:bg-sea-deep md:w-auto md:px-10">
