@@ -35,8 +35,9 @@ export default function HomePage() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-ink/10" />
           <div className="pointer-events-none absolute inset-0 mx-auto flex max-w-6xl flex-col justify-end px-4 pb-28 md:pb-48">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-sand">Umrah flights</p>
-            <h1 className="mt-2 max-w-xl font-serif text-5xl leading-none tracking-tight text-white sm:text-6xl">
-              Compare the fare into Jeddah or Medina.
+            <h1 className="mt-2 font-serif text-3xl leading-[0.95] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              <span className="block">Compare the fare into</span>
+              <span className="block">Jeddah or Medina.</span>
             </h1>
             <p className="mt-4 max-w-lg text-base text-white/85">
               For travel agents in the UK, the US and Canada. One way or return, with the stops, bags and total in the
