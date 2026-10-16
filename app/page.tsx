@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { connection } from "next/server";
 import { HeroSlideshow } from "@/components/hero-slideshow";
+import { duffelMode } from "@/lib/duffel";
 import { SearchForm } from "@/components/search-form";
 import { addDays, todayIso } from "@/lib/format";
 import type { SearchQuery } from "@/lib/types";
@@ -55,7 +56,13 @@ export default function HomePage() {
       <section className="mx-auto max-w-6xl px-4 pb-14 pt-8">
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-serif text-3xl tracking-tight">Routes agents ask for</h2>
-          <p className="hidden text-sm text-muted sm:block">Sample fares, ready to search.</p>
+          <p className="hidden text-sm text-muted sm:block">
+            {duffelMode() === "test"
+              ? "Duffel test fares, not real airline quotes."
+              : duffelMode() === "live"
+                ? "Live Duffel fares. Nothing is ticketed yet."
+                : "Sample fares, ready to search."}
+          </p>
         </div>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {ROUTES.map((route) => (
@@ -121,9 +128,13 @@ export default function HomePage() {
         <div>
           <h2 className="font-serif text-4xl tracking-tight">The fare you see is the fare we recheck.</h2>
           <p className="mt-4 text-muted leading-7">
-            Meridian is the comparison screen an agent can put in front of a client. A supplier such as Duffel can sit
-            behind it once the account exists. Until a payment provider is approved, every price is a labelled sample
-            and every booking stops before an airline order.
+            Meridian is the comparison screen an agent can put in front of a client.{" "}
+            {duffelMode() === "test"
+              ? "The prices on this site are Duffel test fares, not real airline quotes."
+              : duffelMode() === "live"
+                ? "The prices come from Duffel, and a booking still stops before an airline order."
+                : "Until Duffel is connected, every price is a labelled sample."}{" "}
+            No payment is taken.
           </p>
         </div>
       </section>

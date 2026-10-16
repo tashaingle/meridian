@@ -1,12 +1,16 @@
 import Link from "next/link";
+import { duffelMode } from "@/lib/duffel";
 
 export function DemoBanner() {
   if (process.env.NEXT_PUBLIC_LIVE_BOOKING === "true") return null;
-  return (
-    <p className="bg-sea-deep px-4 py-2 text-center text-sm text-sand">
-      Demonstration for Umrah flight search. Sample fares, no payment taken, and no ticket issued.
-    </p>
-  );
+  const mode = duffelMode();
+  const copy =
+    mode === "test"
+      ? "Duffel test fares. These are not real airline prices. No payment is taken, and no ticket is issued."
+      : mode === "live"
+        ? "Live Duffel fares. No payment is taken, and no ticket is issued."
+        : "Demonstration for Umrah flight search. Sample fares, no payment taken, and no ticket issued.";
+  return <p className="bg-sea-deep px-4 py-2 text-center text-sm text-sand">{copy}</p>;
 }
 
 export function Mark({ className = "h-8 w-8" }: { className?: string }) {

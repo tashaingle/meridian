@@ -5,6 +5,7 @@ import { connection } from "next/server";
 import { CheckoutForm } from "@/components/checkout-form";
 import { SliceView } from "@/components/itinerary";
 import { formatMoney } from "@/lib/format";
+import { duffelMode } from "@/lib/duffel";
 import { getOffer } from "@/lib/supplier";
 
 export const metadata = { title: "Checkout" };
@@ -54,7 +55,9 @@ async function Checkout({ params }: PageProps) {
         </dl>
         <p className="mt-3 text-xs leading-5 text-muted">
           {offer.supplier === "duffel"
-            ? "This price came from Duffel. Confirming here does not create an airline order."
+            ? duffelMode() === "test"
+              ? "This price is a Duffel test fare, not a real airline quote. Confirming here does not create an order."
+              : "This price came from Duffel. Confirming here does not create an airline order."
             : "Sample total for the whole party. Nothing is held."}
         </p>
         <Link href={`/flights/${encodeURIComponent(offer.id)}`} className="mt-3 inline-block text-sm text-sea">

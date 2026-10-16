@@ -1,4 +1,4 @@
-import { getDuffelOffer, searchDuffel, duffelEnabled } from "@/lib/duffel";
+import { duffelEnabled, duffelMode, getDuffelOffer, searchDuffel } from "@/lib/duffel";
 import { getSampleItinerary, getSampleOffer, searchSample } from "@/lib/sample-offers";
 import type { Itinerary, Offer, SearchQuery, SupplierMode } from "@/lib/types";
 
@@ -19,12 +19,17 @@ export async function searchFlights(query: SearchQuery): Promise<SearchResult> {
 
   try {
     const itineraries = await searchDuffel(query);
+    const test = duffelMode() === "test";
     return {
       mode: "duffel",
       itineraries,
-      notice: itineraries.length
-        ? "Live offers from Duffel. Meridian will not ticket them until payments are approved."
-        : "Duffel returned no offers for that search.",
+      notice: test
+        ? itineraries.length
+          ? "Duffel test fares. Schedules and prices are not real airline quotes, and nothing is held."
+          : "Duffel test mode returned no offers for that search."
+        : itineraries.length
+          ? "Live offers from Duffel. Meridian will not ticket them until payments are approved."
+          : "Duffel returned no offers for that search.",
     };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Duffel search failed.";

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ItineraryDetail } from "@/components/itinerary";
 import { cabinLabel, formatMoney, travellerLabel } from "@/lib/format";
+import { duffelMode } from "@/lib/duffel";
 import { getItinerary } from "@/lib/supplier";
 
 export const metadata = { title: "Fare details" };
@@ -51,7 +52,9 @@ async function Fare({ params, searchParams }: PageProps) {
           <p className="rounded-xl bg-sand px-3 py-2 text-sm">
             {itinerary.supplier === "sample"
               ? "Fare rechecked. This sample price is unchanged."
-              : "Fare rechecked with Duffel just now. No airline order has been created."}
+              : duffelMode() === "test"
+                ? "Fare rechecked in Duffel test mode. This is not a real airline quote, and no order has been created."
+                : "Fare rechecked with Duffel just now. No airline order has been created."}
           </p>
         )}
         {itinerary.fares.map((fare) => (

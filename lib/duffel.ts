@@ -189,8 +189,15 @@ function passengerBody(query: SearchQuery): { type: string }[] {
   ];
 }
 
+export function duffelMode(): "off" | "test" | "live" {
+  const token = process.env.DUFFEL_ACCESS_TOKEN?.trim() ?? "";
+  if (!token) return "off";
+  if (token.startsWith("duffel_test_")) return "test";
+  return "live";
+}
+
 export function duffelEnabled(): boolean {
-  return Boolean(process.env.DUFFEL_ACCESS_TOKEN);
+  return duffelMode() !== "off";
 }
 
 export async function searchDuffel(query: SearchQuery): Promise<Itinerary[]> {
