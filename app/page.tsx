@@ -33,7 +33,7 @@ export default function HomePage() {
         <div className="relative min-h-[52vh] md:min-h-[78vh]">
           <HeroSlideshow />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/20 to-ink/10" />
-          <div className="pointer-events-none relative mx-auto flex min-h-[52vh] max-w-6xl flex-col justify-end px-4 pb-8 md:min-h-[78vh] md:pb-28">
+          <div className="pointer-events-none absolute inset-0 mx-auto flex max-w-6xl flex-col justify-end px-4 pb-28 md:pb-48">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-sand">Umrah flights</p>
             <h1 className="mt-2 max-w-xl font-serif text-5xl leading-none tracking-tight text-white sm:text-6xl">
               Compare the fare into Jeddah or Medina.
@@ -44,14 +44,14 @@ export default function HomePage() {
             </p>
           </div>
         </div>
-        <div className="relative z-10 mx-auto -mt-6 max-w-6xl px-4 md:-mt-16">
+        <div className="relative z-10 mx-auto -mt-20 max-w-6xl px-4 md:-mt-36">
           <Suspense fallback={<div className="h-64 rounded-3xl bg-card shadow-lg" />}>
             <LiveSearch />
           </Suspense>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-16">
+      <section className="mx-auto max-w-6xl px-4 pb-14 pt-8">
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-serif text-3xl tracking-tight">Routes agents ask for</h2>
           <p className="hidden text-sm text-muted sm:block">Sample fares, ready to search.</p>
